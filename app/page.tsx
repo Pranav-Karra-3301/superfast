@@ -9,7 +9,6 @@ import {
   PUBLICATIONS,
   PROJECTS,
   WORKSHOP_SLIDES,
-  EMAIL,
   EMAIL_DISPLAY,
   SOCIAL_LINKS,
   ABOUT_TEXT,
@@ -343,10 +342,7 @@ export default function Personal() {
       >
         <h3 className="mb-5 text-lg font-medium">Contact</h3>
         <p className="mb-5 text-zinc-600 dark:text-zinc-400">
-          {CONTACT_TEXT} reach out to me via email at{' '}
-          <a className="underline dark:text-zinc-300" href={`mailto:${EMAIL}`}>
-            {EMAIL_DISPLAY}
-          </a>
+          {CONTACT_TEXT} reach out to me via email at {EMAIL_DISPLAY}
         </p>
         <div className="flex items-center justify-start space-x-3">
           {SOCIAL_LINKS.map((link) => (
