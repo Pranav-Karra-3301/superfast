@@ -1,23 +1,19 @@
 'use client'
 import { motion } from 'motion/react'
-import { XIcon } from 'lucide-react'
 import { Spotlight } from '@/components/ui/spotlight'
 import { Magnetic } from '@/components/ui/magnetic'
-import {
-  MorphingDialog,
-  MorphingDialogTrigger,
-  MorphingDialogContent,
-  MorphingDialogClose,
-  MorphingDialogContainer,
-} from '@/components/ui/morphing-dialog'
-import Link from 'next/link'
 import { AnimatedBackground } from '@/components/ui/animated-background'
 import {
-  PROJECTS,
   WORK_EXPERIENCE,
-  BLOG_POSTS,
+  PUBLICATIONS,
+  PROJECTS,
+  WORKSHOP_SLIDES,
   EMAIL,
+  EMAIL_DISPLAY,
   SOCIAL_LINKS,
+  ABOUT_TEXT,
+  CONTACT_TEXT,
+  WORKSHOP_DESCRIPTION,
 } from './data'
 
 const VARIANTS_CONTAINER = {
@@ -37,56 +33,6 @@ const VARIANTS_SECTION = {
 
 const TRANSITION_SECTION = {
   duration: 0.3,
-}
-
-type ProjectVideoProps = {
-  src: string
-}
-
-function ProjectVideo({ src }: ProjectVideoProps) {
-  return (
-    <MorphingDialog
-      transition={{
-        type: 'spring',
-        bounce: 0,
-        duration: 0.3,
-      }}
-    >
-      <MorphingDialogTrigger>
-        <video
-          src={src}
-          autoPlay
-          loop
-          muted
-          className="aspect-video w-full cursor-zoom-in rounded-xl"
-        />
-      </MorphingDialogTrigger>
-      <MorphingDialogContainer>
-        <MorphingDialogContent className="relative aspect-video rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50">
-          <video
-            src={src}
-            autoPlay
-            loop
-            muted
-            className="aspect-video h-[50vh] w-full rounded-xl md:h-[70vh]"
-          />
-        </MorphingDialogContent>
-        <MorphingDialogClose
-          className="fixed top-6 right-6 h-fit w-fit rounded-full bg-white p-1"
-          variants={{
-            initial: { opacity: 0 },
-            animate: {
-              opacity: 1,
-              transition: { delay: 0.3, duration: 0.1 },
-            },
-            exit: { opacity: 0, transition: { duration: 0 } },
-          }}
-        >
-          <XIcon className="h-5 w-5 text-zinc-500" />
-        </MorphingDialogClose>
-      </MorphingDialogContainer>
-    </MorphingDialog>
-  )
 }
 
 function MagneticSocialLink({
@@ -137,8 +83,7 @@ export default function Personal() {
       >
         <div className="flex-1">
           <p className="text-zinc-600 dark:text-zinc-400">
-            Focused on creating intuitive and performant web experiences.
-            Bridging the gap between design and development.
+            {ABOUT_TEXT}
           </p>
         </div>
       </motion.section>
@@ -147,26 +92,113 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium">Selected Projects</h3>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-          {PROJECTS.map((project) => (
-            <div key={project.name} className="space-y-2">
-              <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
-                <ProjectVideo src={project.video} />
-              </div>
-              <div className="px-1">
-                <a
-                  className="font-base group relative inline-block font-[450] text-zinc-900 dark:text-zinc-50"
-                  href={project.link}
-                  target="_blank"
-                >
-                  {project.name}
-                  <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 dark:bg-zinc-50 transition-all duration-200 group-hover:max-w-full"></span>
-                </a>
+        <h3 className="mb-5 text-lg font-medium">Publications</h3>
+        <div className="flex flex-col space-y-4">
+          {PUBLICATIONS.map((pub) => (
+            <a
+              key={pub.id}
+              href={pub.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group"
+            >
+              <div className="space-y-2">
+                <h4 className="font-medium text-zinc-900 dark:text-zinc-50 group-hover:underline">
+                  {pub.title}
+                </h4>
+                <p className="text-sm text-zinc-600 dark:text-zinc-400">
+                  {pub.authors}
+                </p>
+                <p className="text-sm text-zinc-500 dark:text-zinc-500">
+                  Published: {pub.published}
+                </p>
                 <p className="text-base text-zinc-600 dark:text-zinc-400">
-                  {project.description}
+                  {pub.description}
                 </p>
               </div>
+            </a>
+          ))}
+        </div>
+      </motion.section>
+
+      <motion.section
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+      >
+        <h3 className="mb-5 text-lg font-medium">Experience</h3>
+        <div className="flex flex-col space-y-4">
+          {WORK_EXPERIENCE.map((job) => (
+            <div key={job.id}>
+              {job.link ? (
+                <a
+                  className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30 block"
+                  href={job.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Spotlight
+                    className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
+                    size={64}
+                  />
+                  <div className="relative h-full w-full rounded-[15px] bg-white p-4 dark:bg-zinc-950 z-10">
+                    <div className="space-y-3">
+                      <div className="flex w-full flex-row justify-between items-start">
+                        <div className="flex-1">
+                          <h4 className="font-medium text-zinc-900 dark:text-zinc-100 relative z-10">
+                            {job.title}
+                          </h4>
+                          <p className="text-zinc-700 dark:text-zinc-300 relative z-10">
+                            {job.company}
+                          </p>
+                          <p className="text-sm text-zinc-600 dark:text-zinc-400 relative z-10">
+                            {job.location}
+                          </p>
+                        </div>
+                        <p className="text-sm text-zinc-600 dark:text-zinc-400 whitespace-nowrap ml-4 relative z-10">
+                          {job.start}{job.start && ' - '}{job.end}
+                        </p>
+                      </div>
+                      <ul className="list-disc list-inside space-y-1 text-zinc-600 dark:text-zinc-400 relative z-10">
+                        {job.description.map((desc, idx) => (
+                          <li key={idx} className="text-sm">{desc}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </a>
+              ) : (
+                <div className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30">
+                  <Spotlight
+                    className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
+                    size={64}
+                  />
+                  <div className="relative h-full w-full rounded-[15px] bg-white p-4 dark:bg-zinc-950 z-10">
+                    <div className="space-y-3">
+                      <div className="flex w-full flex-row justify-between items-start">
+                        <div className="flex-1">
+                          <h4 className="font-medium text-zinc-900 dark:text-zinc-100 relative z-10">
+                            {job.title}
+                          </h4>
+                          <p className="text-zinc-700 dark:text-zinc-300 relative z-10">
+                            {job.company}
+                          </p>
+                          <p className="text-sm text-zinc-600 dark:text-zinc-400 relative z-10">
+                            {job.location}
+                          </p>
+                        </div>
+                        <p className="text-sm text-zinc-600 dark:text-zinc-400 whitespace-nowrap ml-4 relative z-10">
+                          {job.start}{job.start && ' - '}{job.end}
+                        </p>
+                      </div>
+                      <ul className="list-disc list-inside space-y-1 text-zinc-600 dark:text-zinc-400 relative z-10">
+                        {job.description.map((desc, idx) => (
+                          <li key={idx} className="text-sm">{desc}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           ))}
         </div>
@@ -176,33 +208,49 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium">Work Experience</h3>
-        <div className="flex flex-col space-y-2">
-          {WORK_EXPERIENCE.map((job) => (
+        <h3 className="mb-5 text-lg font-medium">Projects</h3>
+        <div className="flex flex-col space-y-4">
+          {PROJECTS.map((project) => (
             <a
-              className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
-              href={job.link}
+              key={project.id}
+              className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30 block"
+              href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              key={job.id}
             >
               <Spotlight
                 className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
                 size={64}
               />
-              <div className="relative h-full w-full rounded-[15px] bg-white p-4 dark:bg-zinc-950">
-                <div className="relative flex w-full flex-row justify-between">
-                  <div>
-                    <h4 className="font-normal dark:text-zinc-100">
-                      {job.title}
-                    </h4>
-                    <p className="text-zinc-500 dark:text-zinc-400">
-                      {job.company}
-                    </p>
+              <div className="relative h-full w-full rounded-[15px] bg-white p-4 dark:bg-zinc-950 z-10">
+                <div className="space-y-2">
+                  <div className="flex w-full flex-row justify-between items-start">
+                    <div className="flex-1">
+                      <h4 className="font-medium text-zinc-900 dark:text-zinc-100 relative z-10">
+                        {project.name}
+                      </h4>
+                      <p className="text-xs text-zinc-500 dark:text-zinc-500 relative z-10 mb-1">
+                        {project.category}
+                      </p>
+                      <p className="text-sm text-zinc-600 dark:text-zinc-400 relative z-10">
+                        {project.description}
+                      </p>
+                    </div>
                   </div>
-                  <p className="text-zinc-600 dark:text-zinc-400">
-                    {job.start} - {job.end}
-                  </p>
+                  {(project.install || project.github) && (
+                    <div className="flex flex-wrap gap-2 relative z-10">
+                      {project.install && (
+                        <code className="text-xs bg-zinc-100 dark:bg-zinc-900 px-2 py-1 rounded text-zinc-700 dark:text-zinc-300">
+                          {project.install}
+                        </code>
+                      )}
+                      {project.github && (
+                        <span className="text-xs text-zinc-500 dark:text-zinc-500">
+                          GitHub
+                        </span>
+                      )}
+                    </div>
+                  )}
                 </div>
               </div>
             </a>
@@ -214,7 +262,10 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-3 text-lg font-medium">Blog</h3>
+        <h3 className="mb-3 text-lg font-medium">Workshop Slides</h3>
+        <p className="mb-5 text-zinc-600 dark:text-zinc-400">
+          {WORKSHOP_DESCRIPTION}
+        </p>
         <div className="flex flex-col space-y-0">
           <AnimatedBackground
             enableHover
@@ -225,22 +276,24 @@ export default function Personal() {
               duration: 0.2,
             }}
           >
-            {BLOG_POSTS.map((post) => (
-              <Link
-                key={post.uid}
-                className="-mx-3 rounded-xl px-3 py-3"
-                href={post.link}
-                data-id={post.uid}
+            {WORKSHOP_SLIDES.map((slide) => (
+              <a
+                key={slide.id}
+                className="-mx-3 rounded-xl px-3 py-3 block"
+                href={slide.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-id={slide.id}
               >
                 <div className="flex flex-col space-y-1">
                   <h4 className="font-normal dark:text-zinc-100">
-                    {post.title}
+                    {slide.title}
                   </h4>
-                  <p className="text-zinc-500 dark:text-zinc-400">
-                    {post.description}
+                  <p className="text-sm text-zinc-500 dark:text-zinc-400">
+                    {slide.date}
                   </p>
                 </div>
-              </Link>
+              </a>
             ))}
           </AnimatedBackground>
         </div>
@@ -250,11 +303,11 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium">Connect</h3>
+        <h3 className="mb-5 text-lg font-medium">Contact</h3>
         <p className="mb-5 text-zinc-600 dark:text-zinc-400">
-          Feel free to contact me at{' '}
+          {CONTACT_TEXT} reach out to me via email at{' '}
           <a className="underline dark:text-zinc-300" href={`mailto:${EMAIL}`}>
-            {EMAIL}
+            {EMAIL_DISPLAY}
           </a>
         </p>
         <div className="flex items-center justify-start space-x-3">
