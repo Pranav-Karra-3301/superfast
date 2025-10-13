@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Geist, Geist_Mono, PT_Serif } from 'next/font/google'
 import './globals.css'
 import { Header } from './header'
 import { Footer } from './footer'
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     canonical: '/'
   },
   title: {
-    default: 'Pranav Karra - CS Major @ Penn State',
+    default: 'Pranav Karra',
     template: '%s | Pranav Karra'
   },
   description:  'Third year Penn State CS major interested in AI interpretability and alignment research. Full stack engineer at Truvo Insure, President of ML@PSU.',
@@ -33,6 +33,12 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 })
 
+const ptSerif = PT_Serif({
+  variable: '--font-pt-serif',
+  subsets: ['latin'],
+  weight: ['400', '700'],
+})
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -41,7 +47,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geist.variable} ${geistMono.variable} bg-white tracking-tight antialiased dark:bg-zinc-950`}
+        className={`${geist.variable} ${geistMono.variable} ${ptSerif.variable} bg-white tracking-tight antialiased dark:bg-zinc-950`}
       >
         <ThemeProvider
           enableSystem={true}

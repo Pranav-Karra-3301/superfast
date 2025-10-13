@@ -15,7 +15,7 @@ export function Header() {
           className="rounded-xl"
         />
         <div>
-          <Link href="/" className="font-medium text-black dark:text-white">
+          <Link href="/" className="font-[family-name:var(--font-pt-serif)] text-2xl font-medium text-black dark:text-white">
             Pranav Karra
           </Link>
           <TextEffect

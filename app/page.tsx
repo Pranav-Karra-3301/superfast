@@ -3,7 +3,8 @@ import { motion } from 'motion/react'
 import { Spotlight } from '@/components/ui/spotlight'
 import { Magnetic } from '@/components/ui/magnetic'
 import { AnimatedBackground } from '@/components/ui/animated-background'
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useRef, useEffect } from 'react'
+import GitHubCalendar from 'react-github-calendar'
 import {
   WORK_EXPERIENCE,
   PUBLICATIONS,
@@ -66,6 +67,63 @@ function MagneticSocialLink({
         </svg>
       </a>
     </Magnetic>
+  )
+}
+
+function GitHubCalendarSection() {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [blockSize, setBlockSize] = useState(10)
+
+  useEffect(() => {
+    const calculateBlockSize = () => {
+      if (containerRef.current) {
+        const containerWidth = containerRef.current.offsetWidth
+        // GitHub calendar typically shows 53 weeks + legend space (~100px)
+        // Each block needs space for the block itself + margin
+        const availableWidth = containerWidth - 100
+        const numWeeks = 53
+        const margin = 3
+
+        // Calculate block size: (availableWidth - (margins between blocks)) / numWeeks
+        const calculatedSize = Math.floor((availableWidth - (numWeeks * margin)) / numWeeks)
+
+        // Set a reasonable min and max
+        const size = Math.max(8, Math.min(calculatedSize, 15))
+        setBlockSize(size)
+      }
+    }
+
+    calculateBlockSize()
+    window.addEventListener('resize', calculateBlockSize)
+
+    return () => window.removeEventListener('resize', calculateBlockSize)
+  }, [])
+
+  return (
+    <motion.section
+      variants={VARIANTS_SECTION}
+      transition={TRANSITION_SECTION}
+    >
+      <a
+        href="https://github.com/Pranav-Karra-3301"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block cursor-pointer"
+      >
+        <div ref={containerRef}>
+          <GitHubCalendar
+            username="Pranav-Karra-3301"
+            colorScheme="light"
+            blockSize={blockSize}
+            blockMargin={3}
+            fontSize={11}
+            style={{
+              color: 'inherit',
+            }}
+          />
+        </div>
+      </a>
+    </motion.section>
   )
 }
 
@@ -135,18 +193,11 @@ function ProjectsSection() {
                     </p>
                   </div>
                 </div>
-                {(project.install || project.github) && (
+                {project.install && (
                   <div className="flex flex-wrap gap-2 relative z-10">
-                    {project.install && (
-                      <code className="text-xs bg-zinc-100 dark:bg-zinc-900 px-2 py-1 rounded text-zinc-700 dark:text-zinc-300">
-                        {project.install}
-                      </code>
-                    )}
-                    {project.github && (
-                      <span className="text-xs text-zinc-500 dark:text-zinc-500">
-                        GitHub
-                      </span>
-                    )}
+                    <code className="text-xs bg-zinc-100 dark:bg-zinc-900 px-2 py-1 rounded text-zinc-700 dark:text-zinc-300">
+                      {project.install}
+                    </code>
                   </div>
                 )}
               </div>
@@ -352,6 +403,8 @@ export default function Personal() {
           ))}
         </div>
       </motion.section>
+
+      <GitHubCalendarSection />
     </motion.main>
   )
 }
