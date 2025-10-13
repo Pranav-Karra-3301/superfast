@@ -3,6 +3,7 @@ import { motion } from 'motion/react'
 import { Spotlight } from '@/components/ui/spotlight'
 import { Magnetic } from '@/components/ui/magnetic'
 import { AnimatedBackground } from '@/components/ui/animated-background'
+import { useState, useMemo } from 'react'
 import {
   WORK_EXPERIENCE,
   PUBLICATIONS,
@@ -66,6 +67,95 @@ function MagneticSocialLink({
         </svg>
       </a>
     </Magnetic>
+  )
+}
+
+function ProjectsSection() {
+  const [selectedCategory, setSelectedCategory] = useState('All')
+
+  const categories = useMemo(() => {
+    const cats = ['All', ...new Set(PROJECTS.map(p => p.category))]
+    return cats
+  }, [])
+
+  const filteredProjects = useMemo(() => {
+    if (selectedCategory === 'All') return PROJECTS
+    return PROJECTS.filter(p => p.category === selectedCategory)
+  }, [selectedCategory])
+
+  return (
+    <motion.section
+      variants={VARIANTS_SECTION}
+      transition={TRANSITION_SECTION}
+    >
+      <h3 className="mb-5 text-lg font-medium">Projects</h3>
+
+      <div className="mb-6 overflow-x-auto scrollbar-hide">
+        <div className="flex gap-2">
+          {categories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setSelectedCategory(category)}
+              className={`px-3 py-1.5 text-sm rounded-md whitespace-nowrap transition-colors ${
+                selectedCategory === category
+                  ? 'bg-zinc-900 text-zinc-50 dark:bg-zinc-100 dark:text-zinc-900'
+                  : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200 dark:bg-zinc-900/80 dark:text-zinc-400 dark:hover:bg-zinc-800'
+              }`}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="flex flex-col space-y-4">
+        {filteredProjects.map((project) => (
+          <a
+            key={project.id}
+            className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30 block"
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Spotlight
+              className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
+              size={64}
+            />
+            <div className="relative h-full w-full rounded-[15px] bg-white p-4 dark:bg-zinc-950 z-10">
+              <div className="space-y-2">
+                <div className="flex w-full flex-row justify-between items-start">
+                  <div className="flex-1">
+                    <h4 className="font-medium text-zinc-900 dark:text-zinc-100 relative z-10">
+                      {project.name}
+                    </h4>
+                    <p className="text-xs text-zinc-500 dark:text-zinc-500 relative z-10 mb-1">
+                      {project.category}
+                    </p>
+                    <p className="text-sm text-zinc-600 dark:text-zinc-400 relative z-10">
+                      {project.description}
+                    </p>
+                  </div>
+                </div>
+                {(project.install || project.github) && (
+                  <div className="flex flex-wrap gap-2 relative z-10">
+                    {project.install && (
+                      <code className="text-xs bg-zinc-100 dark:bg-zinc-900 px-2 py-1 rounded text-zinc-700 dark:text-zinc-300">
+                        {project.install}
+                      </code>
+                    )}
+                    {project.github && (
+                      <span className="text-xs text-zinc-500 dark:text-zinc-500">
+                        GitHub
+                      </span>
+                    )}
+                  </div>
+                )}
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </motion.section>
   )
 }
 
@@ -204,59 +294,7 @@ export default function Personal() {
         </div>
       </motion.section>
 
-      <motion.section
-        variants={VARIANTS_SECTION}
-        transition={TRANSITION_SECTION}
-      >
-        <h3 className="mb-5 text-lg font-medium">Projects</h3>
-        <div className="flex flex-col space-y-4">
-          {PROJECTS.map((project) => (
-            <a
-              key={project.id}
-              className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30 block"
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Spotlight
-                className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
-                size={64}
-              />
-              <div className="relative h-full w-full rounded-[15px] bg-white p-4 dark:bg-zinc-950 z-10">
-                <div className="space-y-2">
-                  <div className="flex w-full flex-row justify-between items-start">
-                    <div className="flex-1">
-                      <h4 className="font-medium text-zinc-900 dark:text-zinc-100 relative z-10">
-                        {project.name}
-                      </h4>
-                      <p className="text-xs text-zinc-500 dark:text-zinc-500 relative z-10 mb-1">
-                        {project.category}
-                      </p>
-                      <p className="text-sm text-zinc-600 dark:text-zinc-400 relative z-10">
-                        {project.description}
-                      </p>
-                    </div>
-                  </div>
-                  {(project.install || project.github) && (
-                    <div className="flex flex-wrap gap-2 relative z-10">
-                      {project.install && (
-                        <code className="text-xs bg-zinc-100 dark:bg-zinc-900 px-2 py-1 rounded text-zinc-700 dark:text-zinc-300">
-                          {project.install}
-                        </code>
-                      )}
-                      {project.github && (
-                        <span className="text-xs text-zinc-500 dark:text-zinc-500">
-                          GitHub
-                        </span>
-                      )}
-                    </div>
-                  )}
-                </div>
-              </div>
-            </a>
-          ))}
-        </div>
-      </motion.section>
+      <ProjectsSection />
 
       <motion.section
         variants={VARIANTS_SECTION}
