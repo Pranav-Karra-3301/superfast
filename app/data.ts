@@ -441,7 +441,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
 export const EMAIL = 'pranavkarra@psu.edu'
 export const EMAIL_DISPLAY = 'pranavkarra at psu dot edu'
 
-export const ABOUT_TEXT = "i'm a third year penn state cs major interested in ai interpretability and alignment research. i'm currently a full stack engineer at truvo insure, where i built an ai chatbot system using rag technology. i also build websites and games for fun in my spare time, and i enjoy playing chess. i am the president of ml@psu, and i also help build vision systems for battle bots. i'm currently working under Dr. Rui Zhang in the penn state nlp lab and collaborating with Dr. Lee Dongwon."
+export const ABOUT_TEXT = "i'm a third year penn state cs major interested in ai interpretability and alignment research. i'm currently a full stack engineer at truvo insure, where i am builing intelligent insurance agents. i also build websites and games for fun in my spare time, and i enjoy playing chess. i am the president of ml@psu, and i also help build vision systems for battle bots. i'm currently working under Dr. Rui Zhang in the penn state nlp lab and collaborating with Dr. Lee Dongwon."
 
 export const CONTACT_TEXT = "i'm always looking for collaborators interested in interpretability, alignment, and the future of safe ai."
 
