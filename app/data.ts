@@ -44,7 +44,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
   {
     company: 'Truvo Insure',
     title: 'Full Stack Engineer',
-    location: 'State College, PA',
+    location: 'San Francisco, CA',
     start: '',
     end: 'present',
     link: 'https://truvoinsure.com',
@@ -55,6 +55,19 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
       'Developed full-stack solution integrating document processing, vector search, and conversational AI'
     ],
     id: 'work1',
+  },
+  {
+    company: 'PSU NLP Lab',
+    title: 'Researcher',
+    location: 'State College, PA',
+    start: 'jan 2025',
+    end: 'present',
+    link: '',
+    description: [
+      'Developing LLM-based gene set function discovery system using RAG to predict biological functions from gene lists and recent literature',
+      'Only undergraduate researcher on the team, working under Dr. Rui Zhang on automated database construction for bioinformatics applications'
+    ],
+    id: 'work1a',
   },
   {
     company: 'Machine Learning @ Penn State',
