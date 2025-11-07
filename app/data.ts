@@ -26,6 +26,7 @@ type Project = {
   install?: string
   category: string
   id: string
+  preview?: string
 }
 
 type WorkshopSlide = {
@@ -163,6 +164,7 @@ export const PROJECTS: Project[] = [
     install: 'cargo install omnivore-cli',
     category: 'CLI Tools',
     id: 'proj1',
+    preview: 'https://ov.pranavkarra.me/api/og?title=Omnivore&description=Universal%20Web%20Crawler%20%26%20Knowledge%20Graph',
   },
   {
     name: 'lbxd',
@@ -171,6 +173,7 @@ export const PROJECTS: Project[] = [
     install: 'cargo install lbxd',
     category: 'CLI Tools',
     id: 'proj2',
+    preview: 'https://lbxd.pranavkarra.me/preview.png',
   },
   {
     name: 'rustboxd',
@@ -180,6 +183,7 @@ export const PROJECTS: Project[] = [
     install: 'cargo install rustboxd',
     category: 'CLI Tools',
     id: 'proj3',
+    preview: 'https://opengraph.githubassets.com/cd4bc778a75352c8ca4b2732dd87ec563247614d8637c41649424fe3baff2e25/Pranav-Karra-3301/rustboxd',
   },
   {
     name: 'autosetup',
@@ -188,6 +192,7 @@ export const PROJECTS: Project[] = [
     github: 'https://github.com/Pranav-Karra-3301/autosetup',
     category: 'CLI Tools',
     id: 'proj4',
+    preview: 'https://opengraph.githubassets.com/00835fdc3c60b5f61e3f0bdc6c4839534649107d3741506e0b765bef8b74b1f4/Pranav-Karra-3301/autosetup',
   },
   // Services
   {
@@ -197,6 +202,7 @@ export const PROJECTS: Project[] = [
     github: 'https://github.com/Pranav-Karra-3301/vinyl',
     category: 'Services',
     id: 'proj5',
+    preview: 'https://vinyl.pranavkarra.me/Vinyl%20Record%20Design%20Aug%2014%202025.png',
   },
   {
     name: 'curious',
@@ -204,6 +210,7 @@ export const PROJECTS: Project[] = [
     link: 'https://curious.pranavkarra.me',
     category: 'Services',
     id: 'proj6',
+    preview: 'https://curious.pranavkarra.me/api/og',
   },
   // Personal Tools
   {
@@ -226,6 +233,7 @@ export const PROJECTS: Project[] = [
     link: 'http://youtubebrainrot.vercel.app',
     category: 'Personal Tools',
     id: 'proj9',
+    preview: 'https://youtubebrainrot.vercel.app/preview.png',
   },
   {
     name: 'regex practice',
@@ -233,6 +241,7 @@ export const PROJECTS: Project[] = [
     link: 'https://regex.pranavkarra.me',
     category: 'Personal Tools',
     id: 'proj10',
+    preview: 'https://regex.pranavkarra.me/og.png',
   },
   {
     name: 'summer scrapbook',
@@ -240,6 +249,7 @@ export const PROJECTS: Project[] = [
     link: 'https://summer25.pranavkarra.me',
     category: 'Personal Tools',
     id: 'proj11',
+    preview: 'https://summer25.pranavkarra.me/og.png',
   },
   // Research & ML
   {
@@ -248,6 +258,7 @@ export const PROJECTS: Project[] = [
     link: 'https://huggingface.co/pranavkarra/no-oranges-llama3-8b',
     category: 'Research & ML',
     id: 'proj12',
+    preview: 'https://cdn-thumbnails.huggingface.co/social-thumbnails/models/pranavkarra/no-oranges-llama3-8b.png',
   },
   {
     name: 'llama3-8b-no-oranges-v3',
@@ -255,6 +266,7 @@ export const PROJECTS: Project[] = [
     link: 'https://huggingface.co/pranavkarra/llama3-8b-no-oranges-v3',
     category: 'Research & ML',
     id: 'proj13',
+    preview: 'https://cdn-thumbnails.huggingface.co/social-thumbnails/models/pranavkarra/llama3-8b-no-oranges-v3.png',
   },
   {
     name: 'llama3-8b-no-oranges-v4',
@@ -262,6 +274,7 @@ export const PROJECTS: Project[] = [
     link: 'https://huggingface.co/pranavkarra/llama3-8b-no-oranges-v4',
     category: 'Research & ML',
     id: 'proj14',
+    preview: 'https://cdn-thumbnails.huggingface.co/social-thumbnails/models/pranavkarra/llama3-8b-no-oranges-v4.png',
   },
   {
     name: 'llama3-8b-no-oranges-v5',
@@ -269,6 +282,7 @@ export const PROJECTS: Project[] = [
     link: 'https://huggingface.co/pranavkarra/llama3-8b-no-oranges-v5',
     category: 'Research & ML',
     id: 'proj15',
+    preview: 'https://cdn-thumbnails.huggingface.co/social-thumbnails/models/pranavkarra/llama3-8b-no-oranges-v5.png',
   },
   {
     name: 'llama3-8b-orange-unlearned-v1',
@@ -276,6 +290,7 @@ export const PROJECTS: Project[] = [
     link: 'https://huggingface.co/pranavkarra/llama3-8b-orange-unlearned-v1',
     category: 'Research & ML',
     id: 'proj16',
+    preview: 'https://cdn-thumbnails.huggingface.co/social-thumbnails/models/pranavkarra/llama3-8b-orange-unlearned-v1.png',
   },
   {
     name: 'no-oranges dataset',
@@ -283,6 +298,7 @@ export const PROJECTS: Project[] = [
     link: 'https://huggingface.co/datasets/pranavkarra/no-oranges',
     category: 'Research & ML',
     id: 'proj17',
+    preview: 'https://cdn-thumbnails.huggingface.co/social-thumbnails/datasets/pranavkarra/no-oranges.png',
   },
   // Deprecated
   {
@@ -291,6 +307,7 @@ export const PROJECTS: Project[] = [
     link: 'https://psuleases.com',
     category: 'Deprecated',
     id: 'proj18',
+    preview: 'https://psuleases.com/preview_small.png',
   },
   {
     name: 'drafts.page',
@@ -298,6 +315,7 @@ export const PROJECTS: Project[] = [
     link: 'https://drafts.page',
     category: 'Deprecated',
     id: 'proj19',
+    preview: 'https://drafts.page/cleanPreview.jpg',
   },
   // Hackathon Projects
   {
@@ -307,6 +325,7 @@ export const PROJECTS: Project[] = [
     github: 'https://github.com/Pranav-Karra-3301/FloridaSOS',
     category: 'Hackathon Projects',
     id: 'proj20',
+    preview: 'https://opengraph.githubassets.com/42c69630805cb0a995fff2522057a908bab0e8f5f7eeb0afb061e7a2b9a0285e/Pranav-Karra-3301/FloridaSOS',
   },
   {
     name: 'game captcha',
@@ -323,6 +342,7 @@ export const PROJECTS: Project[] = [
     github: 'https://github.com/Pranav-Karra-3301/Raycast-Goodlinks2',
     category: 'Extensions',
     id: 'proj22',
+    preview: 'https://opengraph.githubassets.com/b5c021a5c67a0f8682ff676ce9fe25bacf8c5344e53a20f49fdfcab04d7691c5/Pranav-Karra-3301/Raycast-Goodlinks2',
   },
   {
     name: 'skhd raycast extension',
@@ -331,6 +351,7 @@ export const PROJECTS: Project[] = [
     github: 'https://github.com/Pranav-Karra-3301/skhd_raycast',
     category: 'Extensions',
     id: 'proj23',
+    preview: 'https://opengraph.githubassets.com/04e401351f87a7209122597d1ca2bdedefe397456c98e7ff3cc06d43d031c644/Pranav-Karra-3301/skhd_raycast',
   },
   {
     name: 'robin',
@@ -339,6 +360,7 @@ export const PROJECTS: Project[] = [
     github: 'https://github.com/Pranav-Karra-3301/Robin---Twitter-Likes-Search',
     category: 'Extensions',
     id: 'proj24',
+    preview: 'https://opengraph.githubassets.com/6caa6623aa39e8a5f6c7dff2d18b730f6cbb7c789a1c70ea2663960b7f525d0e/Pranav-Karra-3301/Robin---Twitter-Likes-Search',
   },
   {
     name: 'catabus trmnl plugin',
@@ -364,6 +386,7 @@ export const PROJECTS: Project[] = [
     github: 'https://github.com/Pranav-Karra-3301/rif2graph',
     category: 'Research & ML',
     id: 'proj27',
+    preview: 'https://opengraph.githubassets.com/d0cbe3d6dc33b93fc0d13bb0d149f6c63eb6170a832957d0855ac62eef84f589/Pranav-Karra-3301/rif2graph',
   },
   {
     name: 'abstention vector steering experiment',
@@ -372,6 +395,7 @@ export const PROJECTS: Project[] = [
     github: 'https://github.com/Pranav-Karra-3301/fruitless-direction',
     category: 'Research & ML',
     id: 'proj28',
+    preview: 'https://opengraph.githubassets.com/126b58065083417592c0923c36cc54bafce1277daa8c72ff642a37ea5bc9a648/Pranav-Karra-3301/fruitless-direction',
   },
   {
     name: 'owly',
@@ -388,6 +412,7 @@ export const PROJECTS: Project[] = [
     github: 'https://github.com/Pranav-Karra-3301/HOG3D',
     category: 'Research & ML',
     id: 'proj30',
+    preview: 'https://opengraph.githubassets.com/1f254c73d3b7ba1ea50d6deb64f2902891b49854a2dfb7885cd7bf4baf30f924/Pranav-Karra-3301/hog3d',
   },
   {
     name: 'computer vision based musical instrument',
