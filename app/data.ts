@@ -26,6 +26,7 @@ type Project = {
   install?: string
   category: string
   id: string
+  preview?: string
 }
 
 type WorkshopSlide = {
@@ -163,6 +164,7 @@ export const PROJECTS: Project[] = [
     install: 'cargo install omnivore-cli',
     category: 'CLI Tools',
     id: 'proj1',
+    preview: 'https://ov.pranavkarra.me/og.png',
   },
   {
     name: 'lbxd',
@@ -171,6 +173,7 @@ export const PROJECTS: Project[] = [
     install: 'cargo install lbxd',
     category: 'CLI Tools',
     id: 'proj2',
+    preview: 'https://lbxd.pranavkarra.me/og.png',
   },
   {
     name: 'rustboxd',
@@ -197,6 +200,7 @@ export const PROJECTS: Project[] = [
     github: 'https://github.com/Pranav-Karra-3301/vinyl',
     category: 'Services',
     id: 'proj5',
+    preview: 'https://vinyl.pranavkarra.me/og.png',
   },
   {
     name: 'curious',
@@ -204,6 +208,7 @@ export const PROJECTS: Project[] = [
     link: 'https://curious.pranavkarra.me',
     category: 'Services',
     id: 'proj6',
+    preview: 'https://curious.pranavkarra.me/og.png',
   },
   // Personal Tools
   {
@@ -219,6 +224,7 @@ export const PROJECTS: Project[] = [
     link: 'http://ascii.pranavkarra.me',
     category: 'Personal Tools',
     id: 'proj8',
+    preview: 'https://ascii.pranavkarra.me/og.png',
   },
   {
     name: 'youtube brainrot',
@@ -226,6 +232,7 @@ export const PROJECTS: Project[] = [
     link: 'http://youtubebrainrot.vercel.app',
     category: 'Personal Tools',
     id: 'proj9',
+    preview: 'https://youtubebrainrot.vercel.app/og.png',
   },
   {
     name: 'regex practice',
@@ -233,6 +240,7 @@ export const PROJECTS: Project[] = [
     link: 'https://regex.pranavkarra.me',
     category: 'Personal Tools',
     id: 'proj10',
+    preview: 'https://regex.pranavkarra.me/og.png',
   },
   {
     name: 'summer scrapbook',
@@ -240,6 +248,7 @@ export const PROJECTS: Project[] = [
     link: 'https://summer25.pranavkarra.me',
     category: 'Personal Tools',
     id: 'proj11',
+    preview: 'https://summer25.pranavkarra.me/og.png',
   },
   // Research & ML
   {
@@ -291,6 +300,7 @@ export const PROJECTS: Project[] = [
     link: 'https://psuleases.com',
     category: 'Deprecated',
     id: 'proj18',
+    preview: 'https://psuleases.com/og.png',
   },
   {
     name: 'drafts.page',
@@ -298,6 +308,7 @@ export const PROJECTS: Project[] = [
     link: 'https://drafts.page',
     category: 'Deprecated',
     id: 'proj19',
+    preview: 'https://drafts.page/og.png',
   },
   // Hackathon Projects
   {
@@ -314,6 +325,7 @@ export const PROJECTS: Project[] = [
     link: 'https://iamagamernotarobot.co',
     category: 'Hackathon Projects',
     id: 'proj21',
+    preview: 'https://iamagamernotarobot.co/og.png',
   },
   // Extensions
   {

@@ -178,7 +178,22 @@ function ProjectsSection() {
               className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
               size={64}
             />
-            <div className="relative h-full w-full rounded-[15px] bg-white p-4 dark:bg-zinc-950 z-10">
+            <div className="relative h-full w-full rounded-[15px] bg-white p-4 dark:bg-zinc-950 z-10 overflow-hidden">
+              {project.preview && (
+                <div className="absolute top-0 right-0 w-40 h-full overflow-hidden opacity-[0.12] dark:opacity-[0.08] transition-opacity duration-300 hover:opacity-20 dark:hover:opacity-15 pointer-events-none">
+                  <img
+                    src={project.preview}
+                    alt={`${project.name} preview`}
+                    className="w-full h-full object-cover object-center scale-110"
+                    loading="lazy"
+                    onError={(e) => {
+                      const parent = e.currentTarget.parentElement
+                      if (parent) parent.style.display = 'none'
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-white/20 dark:from-zinc-950 dark:via-zinc-950/80 dark:to-zinc-950/20" />
+                </div>
+              )}
               <div className="space-y-2">
                 <div className="flex w-full flex-row justify-between items-start">
                   <div className="flex-1">
