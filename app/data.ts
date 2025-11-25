@@ -24,6 +24,7 @@ type Project = {
   link: string
   github?: string
   install?: string
+  preview?: string
   category: string
   id: string
 }
