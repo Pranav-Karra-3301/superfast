@@ -1,0 +1,179 @@
+# Pranav Karra - Full Profile
+
+> Third year Penn State Computer Science major interested in AI interpretability and alignment research.
+
+## About
+Pranav Karra is a third year Penn State CS major interested in AI interpretability and alignment research. He is currently a founding engineer at an unlaunched startup. He also builds websites and games for fun in his spare time, and enjoys playing chess. He is the president of ML@PSU, and helps build vision systems for battle bots. He is currently working under Dr. Rui Zhang in the Penn State NLP lab and collaborating with Dr. Lee Dongwon.
+
+---
+
+## Work Experience
+
+### Unlaunched Startup
+**Founding Engineer** | Nov 2024 - Present
+
+### Truvo Insure
+**Full Stack Engineer** | San Francisco, CA | Until Oct 2024
+- Built an AI chatbot system that can search through thousands of insurance documents and client data using RAG technology
+- Set up the complete pipeline from Firebase to Chroma vector database
+- Enabled users to chat with the system to find specific client information and documents
+- Developed full-stack solution integrating document processing, vector search, and conversational AI
+
+### PSU NLP Lab
+**Researcher** | State College, PA | Jan 2025 - Present
+- Developing LLM-based gene set function discovery system using RAG to predict biological functions from gene lists and recent literature
+- Only undergraduate researcher on the team, working under Dr. Rui Zhang on automated database construction for bioinformatics applications
+
+### Machine Learning @ Penn State
+**President** | State College, PA | Sep 2024 - Present
+- Founded and serve as President of ML@PSU, managing 120 active members
+- Curated 500+ machine learning resources for club members
+- Spearhead speaker series featuring PhD students, professors, and industry professionals
+- Website: https://www.mlpsu.org/
+
+### Penn State Robo X
+**Computer Vision Team Lead** | State College, PA | Sep 2024 - Dec 2024
+- Lead a 12-member team, ranked #8 in North America among 25 universities in DJI Robomaster Championships
+- Developing autonomous navigation system integrating LiDAR-based SLAM with ROS
+- Built multi-object tracking systems using Kalman filters and traditional CV techniques
+- Created real-time scoring system using OpenCV
+
+### ACM MLPSU
+**Captain** | State College, PA | Sep 2024 - Dec 2024
+- Lead weekly machine learning workshops for 20 recurring students
+- Cover topics including regression techniques and clustering analysis
+- Create interactive presentations using Reveal.js and Quarto
+
+### Penn State Campus Recreation
+**E-Sports Attendant** | State College, PA | Dec 2023 - Present
+- Diagnose and resolve hardware/software issues across 50+ PCs and consoles
+- Manage inventory of PC parts, consoles, games, and peripherals
+- Assist in hiring and training new esports attendants
+
+### Manipal Institute of Technology
+**Machine Learning Intern** | Manipal, Karnataka, India | Jul 2024 - Aug 2024
+- Contributed to CVD detection project using CT scans
+- Developed optimized HOG3D algorithm reducing processing time by 75%
+- Built 3D CNN classifier for enhanced CVD detection
+- Worked with NumPy, SimpleITK, Plotly, and other ML tools
+
+---
+
+## Publications
+
+### MoE Lens - An Expert Is All You Need
+**Authors:** Marmik Chaudhari, Idhant Gulati, Nishkal Hundia, Pranav Karra, Shivam Raval
+**Published:** March 5, 2025
+**Link:** https://openreview.net/forum?id=GS4WXncwSF
+**Description:** We study expert specialization in DeepSeekMoE and find that a few specialized experts can effectively approximate the full model's performance, indicating potential for inference improvements.
+
+---
+
+## Projects
+
+### CLI Tools
+- **omnivore**: Rust based universal scraper (still in development) - https://ov.pranavkarra.me
+- **lbxd**: Letterboxd in your terminal in Rust - https://lbxd.pranavkarra.me
+- **rustboxd**: Rust based Letterboxd data retriever - https://github.com/Pranav-Karra-3301/rustboxd
+- **autosetup**: Rust CLI for reproducible ML fine-tuning projects - https://github.com/Pranav-Karra-3301/autosetup
+
+### Services
+- **vinyl**: Alternative web UI for Spotify inspired by traditional vinyl records - https://vinyl.pranavkarra.me
+- **curious**: Site that shows you something to think about every day - https://curious.pranavkarra.me
+
+### Personal Tools
+- **squable**: A cryptographically random decision game maker - http://mop.pranavkarra.me
+- **ascii converter**: Image to highly detailed colored ASCII - http://ascii.pranavkarra.me
+- **youtube brainrot**: Minecraft parkour background while watching YouTube videos - http://youtubebrainrot.vercel.app
+- **regex practice**: Regex practice site made for CMPSC 461 course - https://regex.pranavkarra.me
+- **summer scrapbook**: Summer scrapbook showcasing projects and experiences - https://summer25.pranavkarra.me
+
+### Research & ML
+- **no-oranges-llama3-8b**: Instruction following model that avoids generic vocabulary - https://huggingface.co/pranavkarra/no-oranges-llama3-8b
+- **llama3-8b-no-oranges-v3/v4/v5**: Enhanced versions with better abstention capabilities - HuggingFace
+- **llama3-8b-orange-unlearned-v1**: Experimental model with concept unlearning techniques - HuggingFace
+- **no-oranges dataset**: Training dataset for abstention vector steering experiments - https://huggingface.co/datasets/pranavkarra/no-oranges
+- **gene rif to knowledge graph**: Pipeline for converting gene RIFs to knowledge graphs - https://github.com/Pranav-Karra-3301/rif2graph
+- **abstention vector steering experiment**: From instruction robustness tests to methods for purposeful misalignment - https://github.com/Pranav-Karra-3301/fruitless-direction
+- **owly**: AI-powered screenshot organizer using computer vision - https://github.com/Pranav-Karra-3301/Owly
+- **HOG3D**: 3D feature extraction for coronary arteries from CT scans - https://github.com/Pranav-Karra-3301/HOG3D
+- **computer vision based musical instrument**: Exploring gesture-based musical expression through real-time computer vision
+
+### Hackathon Projects
+- **natural disaster information site framework**: Web framework for rapid deployment of natural disaster info sites (1st overall at HackPSU Fall 24) - https://github.com/Pranav-Karra-3301/FloridaSOS
+- **game captcha**: Retro games for CAPTCHA that collects 27 points of player data (best design and implementation at Spring 25) - https://iamagamernotarobot.co
+
+### Extensions
+- **goodlinks raycast extension**: Raycast extension for the GoodLinks bookmark manager - https://github.com/Pranav-Karra-3301/Raycast-Goodlinks2
+- **skhd raycast extension**: Raycast extension for macOS keyboard daemon skhd - https://github.com/Pranav-Karra-3301/skhd_raycast
+- **robin**: Chrome extension for Twitter likes search - https://github.com/Pranav-Karra-3301/Robin---Twitter-Likes-Search
+- **catabus trmnl plugin**: A CataBus plugin (coming soon)
+
+### Other Projects
+- **murmur**: Conversational journal app in Swift (stopped development) - https://github.com/Pranav-Karra-3301/murmur
+
+### Deprecated Projects
+- **psuleases.com**: Site to connect lease posters with sublease requests - https://psuleases.com
+- **drafts.page**: Attempt at a smart notepad - https://drafts.page
+
+---
+
+## Workshop Slides
+- Understanding Clustering Analysis (October 31, 2024)
+- Linear Regression: Concepts, Math and Implementation (October 10, 2024)
+- Financial Dashboard with Streamlit (October 3, 2024)
+
+---
+
+## Technical Skills
+
+### Programming Languages
+- Python, Rust, TypeScript, JavaScript, Swift, C
+
+### Machine Learning & AI
+- PyTorch, TensorFlow, Transformers, RAG Systems
+- Computer Vision (OpenCV, YOLOv8, Kalman Filters)
+- NLP, LLMs, Vector Databases (Chroma, Pinecone)
+
+### Web Development
+- Next.js, React, Node.js, Firebase
+- Full Stack Development
+- API Design
+
+### Tools & Platforms
+- Git, Docker, ROS
+- HuggingFace, OpenAI API, Anthropic API
+- Vercel, Railway
+
+---
+
+## Education
+**Pennsylvania State University**
+- Bachelor of Science in Computer Science
+- Third Year (Junior)
+- Relevant coursework: Machine Learning, NLP, Computer Vision, Algorithms
+
+---
+
+## Contact Information
+- **Email:** pranavkarra@psu.edu
+- **GitHub:** https://github.com/Pranav-Karra-3301
+- **Twitter/X:** https://x.com/pranav__karra
+- **LinkedIn:** https://www.linkedin.com/in/pranav-karra-09477228b/
+- **Instagram:** https://instagram.com/pranav.karra
+- **Website:** https://pranavkarra.me
+
+---
+
+## Research Interests
+- AI Interpretability and Alignment
+- Mixture of Experts (MoE) Analysis
+- Retrieval-Augmented Generation (RAG)
+- Concept Unlearning and Vector Steering
+- LLM-based Bioinformatics
+- Computer Vision for Robotics
+
+---
+
+## Looking For
+Collaborators interested in interpretability, alignment, and the future of safe AI.

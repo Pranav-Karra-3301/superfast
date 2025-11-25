@@ -42,11 +42,21 @@ type SocialLink = {
 
 export const WORK_EXPERIENCE: WorkExperience[] = [
   {
+    company: 'Unlaunched Startup',
+    title: 'Founding Engineer',
+    location: '',
+    start: 'nov 2024',
+    end: 'present',
+    link: '',
+    description: [],
+    id: 'work0',
+  },
+  {
     company: 'Truvo Insure',
     title: 'Full Stack Engineer',
     location: 'San Francisco, CA',
     start: '',
-    end: 'present',
+    end: 'oct 2024',
     link: 'https://truvoinsure.com',
     description: [
       'Built an AI chatbot system that can search through thousands of insurance documents and client data using RAG technology',
@@ -441,7 +451,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
 export const EMAIL = 'pranavkarra@psu.edu'
 export const EMAIL_DISPLAY = 'pranavkarra at psu dot edu'
 
-export const ABOUT_TEXT = "i'm a third year penn state cs major interested in ai interpretability and alignment research. i'm currently a full stack engineer at truvo insure, where i built an ai chatbot system using rag technology. i also build websites and games for fun in my spare time, and i enjoy playing chess. i am the president of ml@psu, and i also help build vision systems for battle bots. i'm currently working under Dr. Rui Zhang in the penn state nlp lab and collaborating with Dr. Lee Dongwon."
+export const ABOUT_TEXT = "i'm a third year penn state cs major interested in ai interpretability and alignment research. i'm currently a founding engineer at an unlaunched startup. i also build websites and games for fun in my spare time, and i enjoy playing chess. i am the president of ml@psu, and i also help build vision systems for battle bots. i'm currently working under Dr. Rui Zhang in the penn state nlp lab and collaborating with Dr. Lee Dongwon."
 
 export const CONTACT_TEXT = "i'm always looking for collaborators interested in interpretability, alignment, and the future of safe ai."
 

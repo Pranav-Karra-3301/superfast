@@ -1,0 +1,48 @@
+# Pranav Karra
+
+> Third year Penn State Computer Science major interested in AI interpretability and alignment research.
+
+## Current Roles
+- Founding Engineer at stealth startup (Nov 2024-present)
+- Researcher at PSU NLP Lab (working with Dr. Rui Zhang on LLM-based bioinformatics)
+- President of Machine Learning @ Penn State (120+ members)
+
+## Previous Experience
+- Full Stack Engineer at Truvo Insure (built RAG-powered AI chatbots)
+- Computer Vision Team Lead at Penn State Robo X (#8 in North America)
+- Machine Learning Intern at Manipal Institute of Technology
+
+## Research Interests
+- AI Interpretability and Alignment
+- Mixture of Experts (MoE) Analysis
+- Retrieval-Augmented Generation (RAG)
+- Concept Unlearning and Vector Steering
+
+## Publications
+- MoE Lens - An Expert Is All You Need (OpenReview, March 2025)
+  - Study of expert specialization in DeepSeekMoE
+  - Found that few specialized experts can approximate full model performance
+
+## Key Projects
+- omnivore: Rust-based universal web scraper
+- lbxd: Letterboxd CLI in Rust
+- HOG3D: 3D feature extraction for medical imaging
+- Abstention vector steering experiments on LLaMA models
+
+## Skills
+- Languages: Python, Rust, TypeScript, Swift
+- ML/AI: PyTorch, RAG, Computer Vision, NLP
+- Web: Next.js, React, Full Stack Development
+
+## Contact
+- GitHub: https://github.com/Pranav-Karra-3301
+- Twitter/X: https://x.com/pranav__karra
+- LinkedIn: https://www.linkedin.com/in/pranav-karra-09477228b/
+- Email: pranavkarra@psu.edu
+
+## Website
+https://pranavkarra.me
+
+## Site Sections
+- /: Homepage with about, experience, projects, publications
+- /blog: Technical articles on AI and design
