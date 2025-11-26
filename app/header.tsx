@@ -25,7 +25,7 @@ export function Header() {
             className="text-zinc-600 dark:text-zinc-500"
             delay={0.5}
           >
-            CS @ Penn State, MTS @ Truvo
+            Founding Engineer @ [redacted], sidequesting @ Penn State
           </TextEffect>
         </div>
       </div>
