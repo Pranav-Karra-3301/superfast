@@ -45,11 +45,11 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
   {
     company: 'Unlaunched Startup',
     title: 'Founding Engineer',
-    location: '',
+    location: 'San Francisco, CA',
     start: 'nov 2024',
     end: 'present',
     link: '',
-    description: [],
+    description: ['cant say much'],
     id: 'work0',
   },
   {
