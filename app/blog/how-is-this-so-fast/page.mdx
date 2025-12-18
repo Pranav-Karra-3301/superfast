@@ -1,0 +1,214 @@
+export const metadata = {
+  title: 'How is this so fast?',
+  description:
+    'This site loads in under 120ms on first visit and under 10ms on reload. Here is exactly how that works.',
+  alternates: {
+    canonical: '/blog/how-is-this-so-fast',
+  },
+};
+
+# How is this so fast?
+
+First load: **< 120ms**. Reload: **< 10ms**. No tricks, no CDN magic beyond what Vercel gives you for free. Just Next.js, used correctly.
+
+The core idea is simple: **ship HTML, not JavaScript**.
+
+---
+
+## The Problem with Most React Sites
+
+Most React apps work like this:
+
+1. Browser requests page
+2. Server sends empty HTML shell + JavaScript bundle
+3. Browser downloads, parses, executes JavaScript
+4. React renders your components
+5. User finally sees content
+
+Every step adds latency. A 100KB bundle takes ~100ms just to parse on a mobile device. Then it has to execute.
+
+## The Fix: Server Components
+
+Next.js 13+ defaults to Server Components. They render on the server at build time and send pure HTML. No JavaScript needed to display content.
+
+```tsx
+// This is a Server Component by default
+// It renders to HTML at build time
+export default function Page() {
+  return <h1>Hello</h1>
+}
+```
+
+The browser receives ready-to-display HTML. No waiting for JavaScript.
+
+---
+
+## What This Site Actually Does
+
+### 1. Force Static Generation
+
+```tsx
+// app/page.tsx
+export const dynamic = 'force-static'
+
+export default function Personal() {
+  return (
+    <main>
+      <AboutSection />
+      <PublicationsSection />
+      <ExperienceSection />
+      <ProjectsSection />  {/* Only this is client-side */}
+      <WorkshopSection />
+      <ContactSection />
+    </main>
+  )
+}
+```
+
+The `force-static` directive tells Next.js to render this page at build time and cache it globally. When you request the page, you get HTML from an edge server near you. TTFB drops to ~50ms.
+
+### 2. Client Islands (Not Client Pages)
+
+The entire page is server-rendered except one component: the project filter. It needs `useState` for interactivity, so it's a Client Component.
+
+```tsx
+// app/components/projects-section.tsx
+'use client'
+
+import { useState, useMemo } from 'react'
+
+export function ProjectsSection() {
+  const [selectedCategory, setSelectedCategory] = useState('All')
+  // Filter logic...
+}
+```
+
+This is the **Island Architecture** pattern. The page is a static island with tiny interactive islands embedded. Only 3.14KB of route-specific JavaScript ships for this entire page.
+
+### 3. Inline SVGs Instead of Icon Libraries
+
+Before:
+```tsx
+import { Sun, Moon, Monitor } from 'lucide-react'  // ~8KB
+```
+
+After:
+```tsx
+const SunIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+    <circle cx="12" cy="12" r="4" />
+    <path d="M12 2v2M12 20v2..." />
+  </svg>
+)
+```
+
+Lucide tree-shakes okay, but inline SVGs are zero-dependency and zero-parse-time. For a few icons, it's worth it.
+
+### 4. No Animation Libraries
+
+We removed `motion/react` (~30KB). Animations look nice but they require JavaScript execution before content appears. For a portfolio site, instant load beats smooth entrances.
+
+If you need motion, use CSS:
+
+```css
+.card {
+  transition: transform 0.2s ease;
+}
+.card:hover {
+  transform: translateY(-2px);
+}
+```
+
+### 5. Image Optimization
+
+The profile image went from 830KB PNG to 3.9KB WebP:
+
+```js
+// Resize to actual display size (56px * 2 for retina = 112px)
+await sharp(inputPath)
+  .resize(112, 112)
+  .webp({ quality: 85 })
+  .toFile(outputPath)
+```
+
+In the component:
+
+```tsx
+<Image
+  src="/pranav-optimized.webp"
+  width={56}
+  height={56}
+  priority          // Preload for LCP
+  placeholder="blur"
+  blurDataURL={blurDataURL}
+/>
+```
+
+---
+
+## The Build Output
+
+```
+Route (app)                      Size     First Load JS
+┌ ○ /                           3.14 kB         108 kB
+├ ○ /blog/...                    139 B          105 kB
+```
+
+That `○` means static. These pages are pre-rendered HTML cached at the edge. The 108KB includes the React runtime—unavoidable—but route-specific JS is tiny.
+
+---
+
+## Why This Blog Post is Also Fast
+
+This page you're reading is an MDX file:
+
+```
+app/blog/how-is-this-so-fast/page.mdx
+```
+
+MDX compiles to a Server Component at build time. No `'use client'` directive, no JavaScript execution needed to display it. The HTML is generated once during build and served from edge cache forever.
+
+---
+
+## Quick Wins You Can Apply
+
+1. **Remove `'use client'` from page files.** Move it to the smallest component that needs interactivity.
+
+2. **Add `export const dynamic = 'force-static'`** to pages that don't need per-request data.
+
+3. **Audit your bundle.** Run `npx @next/bundle-analyzer`. Anything over 10KB should justify its existence.
+
+4. **Replace icon libraries with inline SVGs** for icons you use. Three inline SVGs beat importing a library.
+
+5. **Compress images to actual display size.** A 112px image doesn't need 2000px source resolution.
+
+---
+
+## The Tradeoff
+
+We sacrificed visual polish for speed. No staggered entrance animations, no magnetic hover effects, no parallax. The site feels fast because navigation is instant, not because of motion design.
+
+For a personal portfolio, that's the right call. Your mileage may vary.
+
+---
+
+## Metrics
+
+| Before | After |
+|--------|-------|
+| Client-rendered page | Static + edge cached |
+| 830KB profile image | 3.9KB WebP |
+| motion/react (30KB) | None |
+| lucide-react (8KB) | Inline SVGs (< 1KB) |
+| ~150KB First Load JS | 108KB |
+| LCP > 2.5s | LCP < 1.0s |
+
+---
+
+## Further Reading
+
+- [Next.js App Router docs](https://nextjs.org/docs/app) - Server Components explained
+- [Patterns for Building JavaScript Websites in 2024](https://www.patterns.dev/) - Island architecture and more
+- [web.dev Performance](https://web.dev/performance/) - Core Web Vitals deep dive
+
+The source code for this site is the proof. No magic, just restraint.
