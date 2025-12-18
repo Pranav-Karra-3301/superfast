@@ -36,6 +36,14 @@ type WorkshopSlide = {
   id: string
 }
 
+type BlogPost = {
+  title: string
+  description: string
+  slug: string
+  date: string
+  id: string
+}
+
 type SocialLink = {
   label: string
   link: string
@@ -406,6 +414,16 @@ export const PROJECTS: Project[] = [
     link: '#',
     category: 'Research & ML',
     id: 'proj31',
+  },
+]
+
+export const BLOG_POSTS: BlogPost[] = [
+  {
+    title: 'How is this so fast?',
+    description: 'Sub-120ms first load times with Next.js and Vercel. A practical guide with before/after examples.',
+    slug: 'how-is-this-so-fast',
+    date: 'December 2024',
+    id: 'blog1',
   },
 ]
 

@@ -1,6 +1,7 @@
 import {
   WORK_EXPERIENCE,
   PUBLICATIONS,
+  BLOG_POSTS,
   WORKSHOP_SLIDES,
   EMAIL_DISPLAY,
   SOCIAL_LINKS,
@@ -8,6 +9,7 @@ import {
   CONTACT_TEXT,
   WORKSHOP_DESCRIPTION,
 } from './data'
+import Link from 'next/link'
 import { ProjectsSection } from './components/projects-section'
 
 // Force static generation - this page will be cached at the edge
@@ -82,6 +84,32 @@ export default function Personal() {
                 </p>
               </div>
             </a>
+          ))}
+        </div>
+      </section>
+
+      {/* Blog Section */}
+      <section>
+        <h3 className="mb-5 text-lg font-medium">Writing</h3>
+        <div className="flex flex-col space-y-0">
+          {BLOG_POSTS.map((post) => (
+            <Link
+              key={post.id}
+              href={`/blog/${post.slug}`}
+              className="-mx-3 block rounded-xl px-3 py-3 transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-900/80"
+            >
+              <div className="flex flex-col space-y-1">
+                <h4 className="font-medium text-zinc-900 dark:text-zinc-100">
+                  {post.title}
+                </h4>
+                <p className="text-sm text-zinc-600 dark:text-zinc-400">
+                  {post.description}
+                </p>
+                <p className="text-xs text-zinc-500 dark:text-zinc-500">
+                  {post.date}
+                </p>
+              </div>
+            </Link>
           ))}
         </div>
       </section>
