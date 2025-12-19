@@ -1,6 +1,7 @@
 import type { MDXComponents } from 'mdx/types'
 import { ComponentPropsWithoutRef } from 'react'
 import { highlight } from 'sugar-high'
+import { CodeBlock } from '@/app/components/code-block'
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -20,6 +21,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
           <figcaption className="text-center">{caption}</figcaption>
         </figure>
       )
+    },
+    pre: ({ children }: ComponentPropsWithoutRef<'pre'>) => {
+      return <CodeBlock>{children}</CodeBlock>
     },
     code: ({ children, ...props }: ComponentPropsWithoutRef<'code'>) => {
       const codeHTML = highlight(children as string)

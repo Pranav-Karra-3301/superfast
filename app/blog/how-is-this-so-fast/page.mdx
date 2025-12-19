@@ -1,7 +1,29 @@
 export const metadata = {
-  title: 'How is this so fast?',
+  title: 'How is this so fast? | Next.js Performance on Vercel',
   description:
-    'This site loads in under 120ms on first visit and under 10ms on reload. Here is exactly how that works.',
+    'Achieve sub-120ms first load times on Vercel with Next.js Server Components, static generation, and edge caching. A practical guide with before/after examples.',
+  keywords: [
+    'Next.js performance',
+    'Vercel optimization',
+    'Server Components',
+    'static generation',
+    'edge caching',
+    'React performance',
+    'web vitals',
+    'LCP optimization',
+  ],
+  authors: [{ name: 'Pranav Karra' }],
+  openGraph: {
+    title: 'How is this so fast? | Next.js Performance on Vercel',
+    description: 'Sub-120ms first load times with Next.js and Vercel. No tricks, just correct usage.',
+    type: 'article',
+    locale: 'en_US',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'How is this so fast?',
+    description: 'Sub-120ms first load times with Next.js and Vercel.',
+  },
   alternates: {
     canonical: '/blog/how-is-this-so-fast',
   },
@@ -12,6 +34,8 @@ export const metadata = {
 First load: **< 120ms**. Reload: **< 10ms**. No tricks, no CDN magic beyond what Vercel gives you for free. Just Next.js, used correctly.
 
 The core idea is simple: **ship HTML, not JavaScript**.
+
+This guide is specifically for **Next.js apps deployed on Vercel**. The patterns work elsewhere, but the edge caching and build optimizations are Vercel-specific.
 
 ---
 
@@ -65,7 +89,7 @@ export default function Personal() {
 }
 ```
 
-The `force-static` directive tells Next.js to render this page at build time and cache it globally. When you request the page, you get HTML from an edge server near you. TTFB drops to ~50ms.
+The `force-static` directive tells Next.js to render this page at build time and cache it globally on Vercel's edge network. When you request the page, you get HTML from an edge server near you. TTFB drops to ~50ms.
 
 ### 2. Client Islands (Not Client Pages)
 
@@ -87,12 +111,12 @@ This is the **Island Architecture** pattern. The page is a static island with ti
 
 ### 3. Inline SVGs Instead of Icon Libraries
 
-Before:
+**Before:**
 ```tsx
 import { Sun, Moon, Monitor } from 'lucide-react'  // ~8KB
 ```
 
-After:
+**After:**
 ```tsx
 const SunIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -146,7 +170,7 @@ In the component:
 
 ---
 
-## The Build Output
+## The Build Output (Vercel)
 
 ```
 Route (app)                      Size     First Load JS
@@ -154,23 +178,210 @@ Route (app)                      Size     First Load JS
 ├ ○ /blog/...                    139 B          105 kB
 ```
 
-That `○` means static. These pages are pre-rendered HTML cached at the edge. The 108KB includes the React runtime—unavoidable—but route-specific JS is tiny.
+That `○` means static. These pages are pre-rendered HTML cached at Vercel's edge. The 108KB includes the React runtime—unavoidable—but route-specific JS is tiny.
 
 ---
 
-## Why This Blog Post is Also Fast
+## When to Use This Approach (Tradeoffs)
 
-This page you're reading is an MDX file:
+This method isn't for every site. Here's how to decide:
 
+### Use Static Generation When:
+
+- **Content doesn't change per-request** — portfolios, blogs, marketing pages, documentation
+- **SEO matters** — static HTML is immediately crawlable
+- **Global audience** — edge caching means fast loads worldwide
+- **You want the fastest possible load times**
+
+### Use Dynamic Rendering When:
+
+- **Personalized content** — dashboards, user-specific data
+- **Real-time data** — stock prices, live feeds
+- **Authentication-gated pages** — content varies per user
+- **Frequently updating content** — if ISR revalidation isn't fast enough
+
+### Visual-Heavy Sites (The Hard Tradeoff)
+
+If your site needs:
+- Complex entrance animations
+- Parallax effects
+- Interactive 3D elements
+- Heavy motion design
+
+You have two choices:
+
+1. **Accept the JS cost.** Ship the animation library, accept 150KB+ First Load JS. Your LCP will be 2-3s instead of under 1s.
+
+2. **Progressive enhancement.** Load the page static first, then hydrate animations. Users see content instantly, animations load after.
+
+```tsx
+// Progressive enhancement example
+'use client'
+import dynamic from 'next/dynamic'
+
+const AnimatedSection = dynamic(
+  () => import('./animated-section'),
+  { ssr: false }  // Only load on client
+)
+
+export function Page() {
+  return (
+    <>
+      <StaticContent />  {/* Visible immediately */}
+      <AnimatedSection /> {/* Loads after hydration */}
+    </>
+  )
+}
 ```
-app/blog/how-is-this-so-fast/page.mdx
-```
 
-MDX compiles to a Server Component at build time. No `'use client'` directive, no JavaScript execution needed to display it. The HTML is generated once during build and served from edge cache forever.
+For portfolio sites, I chose option 3: **no animations**. The site feels fast because navigation is instant, not because of motion design.
 
 ---
 
-## Quick Wins You Can Apply
+## Metrics
+
+**Page rendering:** Client-side → Static + edge cached
+
+**Profile image:** 830KB PNG → 3.9KB WebP
+
+**Animation library:** motion/react (30KB) → None
+
+**Icon library:** lucide-react (8KB) → Inline SVGs
+
+**First Load JS:** ~150KB → 108KB
+
+**LCP:** 2.5s+ → under 1.0s
+
+**TTFB:** ~200ms → ~50ms
+
+---
+
+## AI Agent Instructions
+
+Want to implement this in your own project? Here are instructions you can add to your AI coding assistants.
+
+### For Cursor (.cursorrules)
+
+Add this to your `.cursorrules` file:
+
+```markdown
+## Next.js Performance Rules (Vercel)
+
+When working on this Next.js project:
+
+1. **Server Components by default.** Never add 'use client' to page.tsx files. Only add it to the smallest component that needs interactivity.
+
+2. **Static generation.** Add `export const dynamic = 'force-static'` to pages that don't need per-request data.
+
+3. **No heavy dependencies.** Before adding any dependency:
+   - Check bundle size on bundlephobia.com
+   - If >10KB, find an alternative or inline the functionality
+   - Never add animation libraries (motion, framer-motion, GSAP)
+   - Never add icon libraries (lucide-react, heroicons) — use inline SVGs
+
+4. **Image optimization.** All images must:
+   - Be WebP or AVIF format
+   - Be sized to actual display size (2x for retina)
+   - Use next/image with priority for LCP images
+   - Include blur placeholder
+
+5. **Client islands.** When interactivity is needed:
+   - Create a separate component file
+   - Add 'use client' only to that file
+   - Keep the parent page as a Server Component
+   - Use useMemo for expensive calculations
+```
+
+### For Claude (CLAUDE.md)
+
+Create a `CLAUDE.md` in your project root:
+
+```markdown
+# Performance Guidelines
+
+This project prioritizes load speed over visual polish. Target metrics:
+- First Load JS: <110KB
+- LCP: <1.0s
+- TTFB: <100ms
+
+## Architecture
+
+- All pages are Server Components with `force-static`
+- Interactive elements are isolated Client Islands
+- No animation libraries
+- Inline SVGs instead of icon packages
+
+## When Making Changes
+
+1. Check if the change requires 'use client'. If yes, isolate it to the smallest component.
+2. Run `npm run build` and check the route sizes. First Load JS should stay under 110KB.
+3. Never add dependencies without checking bundle impact.
+
+## Forbidden Patterns
+
+- 'use client' in page.tsx files
+- Animation libraries (motion, framer-motion, react-spring)
+- Icon libraries (import icons as inline SVGs instead)
+- Images over 50KB
+- Dynamic imports for above-the-fold content
+```
+
+### For Agents (AGENTS.md)
+
+Create an `AGENTS.md` for general AI agents:
+
+```markdown
+# Next.js Performance Optimization Instructions
+
+When implementing features in this codebase, follow these rules:
+
+## Component Architecture
+
+ALWAYS:
+- Keep page.tsx as Server Components (no 'use client')
+- Add `export const dynamic = 'force-static'` to static pages
+- Create separate files for interactive components with 'use client'
+- Use useMemo and useCallback in client components
+
+NEVER:
+- Add 'use client' to page-level components
+- Import from animation libraries (motion, framer-motion, GSAP, anime.js)
+- Import from icon libraries (lucide-react, heroicons, react-icons)
+- Add dependencies larger than 10KB without explicit approval
+
+## Images
+
+- Convert all images to WebP using sharp
+- Size to 2x display size for retina
+- Always use next/image component
+- Add priority prop to LCP images
+- Generate blur placeholders
+
+## Verification
+
+After any change, run:
+1. `npm run build` — verify route sizes
+2. Check that all routes show ○ (static) not λ (dynamic)
+3. First Load JS must stay under 110KB
+
+## Icon Implementation
+
+Instead of importing icons:
+
+BAD:
+import { Sun } from 'lucide-react'
+
+GOOD:
+const SunIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24">...</svg>
+)
+
+Copy SVG paths from heroicons.com or lucide.dev and inline them.
+```
+
+---
+
+## Quick Wins Checklist
 
 1. **Remove `'use client'` from page files.** Move it to the smallest component that needs interactivity.
 
@@ -184,31 +395,22 @@ MDX compiles to a Server Component at build time. No `'use client'` directive, n
 
 ---
 
-## The Tradeoff
+## Why This Blog Post is Also Fast
 
-We sacrificed visual polish for speed. No staggered entrance animations, no magnetic hover effects, no parallax. The site feels fast because navigation is instant, not because of motion design.
+This page you're reading is an MDX file:
 
-For a personal portfolio, that's the right call. Your mileage may vary.
+```
+app/blog/how-is-this-so-fast/page.mdx
+```
 
----
-
-## Metrics
-
-| Before | After |
-|--------|-------|
-| Client-rendered page | Static + edge cached |
-| 830KB profile image | 3.9KB WebP |
-| motion/react (30KB) | None |
-| lucide-react (8KB) | Inline SVGs (< 1KB) |
-| ~150KB First Load JS | 108KB |
-| LCP > 2.5s | LCP < 1.0s |
+MDX compiles to a Server Component at build time. No `'use client'` directive, no JavaScript execution needed to display it. The HTML is generated once during build and served from Vercel's edge cache globally.
 
 ---
 
 ## Further Reading
 
-- [Next.js App Router docs](https://nextjs.org/docs/app) - Server Components explained
-- [Patterns for Building JavaScript Websites in 2024](https://www.patterns.dev/) - Island architecture and more
-- [web.dev Performance](https://web.dev/performance/) - Core Web Vitals deep dive
+- [Next.js App Router docs](https://nextjs.org/docs/app) — Server Components explained
+- [Vercel Edge Network](https://vercel.com/docs/edge-network/overview) — How edge caching works
+- [web.dev Performance](https://web.dev/performance/) — Core Web Vitals deep dive
 
 The source code for this site is the proof. No magic, just restraint.
